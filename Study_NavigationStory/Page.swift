@@ -8,6 +8,6 @@
 import Foundation
 
 struct Page {
-    let pageNumber : Int // 페이지 번호
-    let script : String // 페이지 내용
+    let title : String // 페이지, 선택지 이름
+    var script : String { scripts[title]! }  // 페이지 내용
 }
