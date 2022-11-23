@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var stack = NavigationPath()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationStack(path : $stack) {
+            PageView(stack: $stack, page: Page(id: 1))
         }
-        .padding()
+        
     }
 }
 
