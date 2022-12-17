@@ -10,10 +10,11 @@ import SwiftUI
 struct ContentView: View {
     
     @State var stack = NavigationPath()
+    @ObservedObject var pageStore = PageStore()
     
     var body: some View {
-        NavigationStack(path : $stack) {
-            PageView(stack: $stack, page: Page(id: 1))
+        NavigationStack(path : $pageStore.path) {
+            PageView(pageStore : pageStore, page: Page(id: 1))
         }
         
     }
