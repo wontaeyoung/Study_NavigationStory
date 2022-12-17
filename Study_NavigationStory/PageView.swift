@@ -9,6 +9,11 @@ import SwiftUI
 
 struct PageView: View {
     
+    // MARK: -
+    
+    
+    
+    @ObservedObject var pageStore : PageStore
     @Binding var stack : NavigationPath
     let page : Page
     
@@ -28,14 +33,14 @@ struct PageView: View {
                 .modifier(ScriptModifier())
             Spacer()
             ForEach(page.nextPages, id: \.self) {nextPage in
-                NavigationLink(nextPage.title, destination: PageView(stack: $stack, page: nextPage))
+                NavigationLink(nextPage.title, destination: PageView(pageStore: $stack, page: nextPage))
                     .modifier(NavigationModifier())
                     .navigationTitle(page.title)
             }
             .padding(.bottom, 10)
             if page.id == 9 {
                 Button {
-                    stack = .init()
+                    stack.removeLast(stack.count)
                 } label: {
                     Text("첫 화면으로 돌아가기")
                         .modifier(NavigationModifier())
